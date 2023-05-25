@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import RadioGroup, { RadioButtonProps } from 'react-native-radio-buttons-group';
 import { useDispatch, useSelector } from 'react-redux';
+import StepIndicator from 'react-native-step-indicator';
+
 import CustomerCard from '../../components/Card/CustomerCard';
 import Divider from '../../components/Divider/Divider';
 import Header from '../../components/Header/Header';
@@ -9,6 +11,7 @@ import MainLayout from '../../layout/MainLayout';
 import getPaymentDetails from '../../service/apiService';
 import { COLORS, SIZING, SPACING } from '../../utils/style';
 import OrderDetail from './components/OrderDetail';
+import { wp } from '../../utils/dimension';
 
 const Payment = ({ navigation }: any): JSX.Element => {
     const dispatch = useDispatch()
@@ -37,6 +40,32 @@ const Payment = ({ navigation }: any): JSX.Element => {
         }
     ]), []);
 
+    const [currentPosition, setCurrentPosition] = useState(0)
+    const labels = ["Detail Pemesanan", "Pembayaran", "Summary"];
+    const customStyles = {
+        stepIndicatorSize: wp(6),
+        currentStepIndicatorSize: wp(8),
+        separatorStrokeWidth: 1,
+        currentStepStrokeWidth: 3,
+        stepStrokeCurrentColor: COLORS.BLUE,
+        stepStrokeWidth: 3,
+        stepStrokeFinishedColor: COLORS.BLUE,
+        stepStrokeUnFinishedColor: '#aaaaaa',
+        separatorFinishedColor: COLORS.BLUE,
+        separatorUnFinishedColor: '#aaaaaa',
+        stepIndicatorFinishedColor: COLORS.BLUE,
+        stepIndicatorUnFinishedColor: '#ffffff',
+        stepIndicatorCurrentColor: '#ffffff',
+        stepIndicatorLabelFontSize: 13,
+        currentStepIndicatorLabelFontSize: 13,
+        stepIndicatorLabelCurrentColor: COLORS.BLUE,
+        stepIndicatorLabelFinishedColor: '#ffffff',
+        stepIndicatorLabelUnFinishedColor: '#aaaaaa',
+        labelColor: '#999999',
+        labelSize: SIZING.SMALL + 2,
+        currentStepLabelColor: COLORS.BLACK
+      }
+
     useEffect(() => {
         getPaymentDetails()
         .then((res: any) => {
@@ -52,6 +81,12 @@ const Payment = ({ navigation }: any): JSX.Element => {
         <MainLayout>
             <Header type='icon' title='Payment Details' navigation={navigation} />
             <ScrollView style={styles.container}>
+                <StepIndicator
+                    customStyles={customStyles}
+                    stepCount={labels.length}
+                    currentPosition={currentPosition}
+                    labels={labels}
+                />
                 <Divider size={1} />
                 <OrderDetail data={data} />
                 <Divider size={1} />
