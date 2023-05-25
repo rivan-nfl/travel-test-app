@@ -1,7 +1,10 @@
 export const COLORS = {
+    BLACK: '#000',
     WHITE: '#FFF',
+    GREY: 'grey',
     BLUE: '#2F58CD',
     RED: 'red',
+    ORANGE: 'orange'
 };
 
 export const SPACING = {
@@ -13,9 +16,9 @@ export const SPACING = {
 };
 
 export const SIZING = {
-    XSMALL: 5,
-    SMALL: 8,
+    XSMALL: 8,
+    SMALL: 10,
     MEDIUM: 15,
-    LARGE: 20,
+    LARGE: 18,
     XLARGE: 25
 };

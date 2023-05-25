@@ -1,15 +1,19 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { COLORS, SIZING, SPACING } from '../../utils/style';
 import Icon from 'react-native-vector-icons/Feather';
 import { wp } from '../../utils/dimension';
 
-const Header = (): JSX.Element => {
+const Header = ({ type = '', title = 'Header', style = {}, navigation }: any): JSX.Element => {
     return (
-        <View style={styles.container} >
-            <Icon name="arrow-left" size={wp(7)} color={COLORS.WHITE} />
-            <Text style={styles.title} >Header</Text>
-            <View style={styles.icon} />
+        <View style={[styles.container, style]} >
+            { type == 'icon' && 
+                <Pressable onPress={() => navigation.goBack()}>
+                    <Icon name="arrow-left" size={wp(6)} color={COLORS.WHITE} />
+                </Pressable>
+            }
+            <Text style={styles.title} >{title}</Text>
+            { type == 'icon' && <View style={styles.icon} /> }
         </View>
     )
 }
@@ -18,8 +22,8 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: COLORS.BLUE,
-        paddingVertical: SPACING.LARGE,
         paddingHorizontal: SPACING.MEDIUM
     },
     title: {
@@ -27,11 +31,12 @@ const styles = StyleSheet.create({
         color: COLORS.WHITE,
         fontSize: SIZING.LARGE,
         textAlign: 'center',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginVertical: SPACING.LARGE,
     },
     icon: {
-        width: wp(7),
-        height: wp(7)
+        width: wp(6),
+        height: wp(6)
     }
 });
 

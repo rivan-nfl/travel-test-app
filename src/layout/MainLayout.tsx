@@ -2,9 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { COLORS } from '../utils/style'
 
-const MainLayout = ({ children }: any): JSX.Element => {
+const MainLayout = ({ children, style = {} }: any): JSX.Element => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             { children }
         </View>
     )
