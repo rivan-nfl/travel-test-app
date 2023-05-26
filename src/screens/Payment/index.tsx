@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     },
     ordererDetailContainer: {
         padding: SPACING.MEDIUM,
+        paddingBottom: SPACING.XLARGE
     },
     ordererDetail: {
         padding: SPACING.MEDIUM,

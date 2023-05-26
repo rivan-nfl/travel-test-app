@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
         width: wp(70)
     },
     modalText: {
+        color: COLORS.BLACK,
         fontSize: SIZING.LARGE,
         padding: SPACING.MEDIUM,
     },
